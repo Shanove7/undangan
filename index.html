@@ -1,0 +1,413 @@
+<script>// credits : kasan</script>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Pernikahan</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background-color: #faf9f6; }
+  .font-serif { font-family: 'Playfair Display', serif; }
+  .cover-bg { background-size: cover; background-position: center; }
+  .spacing-extra { letter-spacing: 0.3em; }
+  .gold-text { color: #d97706; }
+  .gold-bg { background-color: #d97706; }
+  .gold-hover:hover { background-color: #b45309; }
+  .dark-bg { background-color: #1c1917; }
+  .light-bg { background-color: #f5f5f4; }
+  @keyframes pulse-slow { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+  .animate-hero { animation: pulse-slow 20s ease-in-out infinite alternate; }
+</style>
+</head>
+<body class="text-gray-800 overflow-x-hidden">
+
+<audio id="bg-music" loop>
+  <source id="music-source" src="" type="audio/mpeg">
+</audio>
+
+<button id="audio-btn" class="hidden fixed bottom-6 right-6 z-50 w-12 h-12 md:w-14 md:h-14 bg-white bg-opacity-80 backdrop-filter backdrop-blur-md text-gray-800 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all border border-gray-200">
+  <i data-lucide="music" id="audio-icon" class="w-5 h-5 md:w-6 md:h-6"></i>
+</button>
+
+<div id="cover-page" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 text-center cover-bg">
+  <div class="absolute inset-0 bg-black bg-opacity-60 backdrop-filter backdrop-blur-sm"></div>
+  <div class="relative z-10 max-w-lg w-full bg-white bg-opacity-10 backdrop-filter backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-2xl border border-white border-opacity-20 transform transition-all duration-1000 hover:scale-105">
+    <p class="text-xs md:text-sm spacing-extra uppercase text-white mb-4 md:mb-6 font-light">The Wedding Of</p>
+    <h1 class="text-3xl md:text-5xl font-serif text-white mb-4 md:mb-6 drop-shadow-lg leading-tight"><span class="val-groom"></span> <br><span class="text-yellow-400">&</span><br> <span class="val-bride"></span></h1>
+    <p class="text-white text-opacity-80 mb-10 md:mb-12 text-xs md:text-sm italic tracking-widest val-date-text"></p>
+    
+    <div class="bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm p-4 md:p-6 rounded-2xl shadow-inner mb-8 md:mb-10 border border-white border-opacity-10">
+      <p class="text-[10px] md:text-xs text-white text-opacity-70 mb-2 uppercase tracking-widest">Kepada Yth.</p>
+      <p class="font-serif text-lg md:text-xl text-white val-guest"></p>
+    </div>
+
+    <button id="open-btn" class="w-full bg-white text-gray-900 hover:bg-gray-100 font-serif py-3 md:py-4 px-6 rounded-full transition-all duration-300 flex items-center justify-center gap-3 shadow-lg group text-sm md:text-base">
+      <i data-lucide="mail" class="w-4 h-4 md:w-5 md:h-5 transform group-hover:scale-110 transition-transform"></i>
+      Buka Undangan
+    </button>
+  </div>
+</div>
+
+<div id="main-content" class="hidden opacity-0 transition-opacity duration-1000">
+  <section class="relative min-h-screen flex flex-col items-center justify-center text-center p-4 overflow-hidden py-20">
+    <div class="absolute inset-0 z-0">
+      <img id="img-hero" src="" class="w-full h-full object-cover animate-hero">
+      <div class="absolute inset-0 bg-gradient-to-b from-black via-black opacity-60 to-[#faf9f6]"></div>
+    </div>
+    
+    <div class="z-10 mt-10 md:mt-20 w-full px-4">
+      <p class="text-xs md:text-base spacing-extra uppercase mb-4 md:mb-6 text-white text-opacity-90 drop-shadow-md font-light">We Are Getting Married</p>
+      <h1 class="text-4xl md:text-7xl lg:text-8xl font-serif mb-6 md:mb-8 text-white drop-shadow-2xl leading-tight"><span class="val-groom"></span><br><span class="text-2xl md:text-5xl italic text-yellow-200 text-opacity-80 my-2 block">&</span><span class="val-bride"></span></h1>
+      <p class="text-sm md:text-xl text-white text-opacity-90 tracking-widest font-light mb-16 val-date-full"></p>
+    </div>
+
+    <div class="absolute bottom-6 md:bottom-10 z-10 animate-bounce">
+      <i data-lucide="chevron-down" class="w-8 h-8 md:w-10 md:h-10 text-gray-800 text-opacity-50"></i>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 px-4 max-w-4xl mx-auto text-center relative">
+    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-px h-12 md:h-16 bg-gradient-to-b from-transparent to-yellow-300"></div>
+    <p class="font-serif italic text-gray-600 text-xl md:text-3xl leading-relaxed mt-6 md:mt-8 mb-4 md:mb-6">
+      "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya."
+    </p>
+    <p class="text-xs md:text-sm tracking-widest text-gray-400 uppercase">(QS. Ar-Rum: 21)</p>
+  </section>
+
+  <section class="py-16 md:py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-8">
+        <div class="flex flex-col items-center flex-1 text-center md:text-right md:items-end w-full">
+          <div class="w-56 h-80 md:w-64 md:h-96 rounded-t-full overflow-hidden mb-6 md:mb-8 shadow-2xl relative group">
+            <img id="img-groom" src="" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+            <div class="absolute inset-0 border-8 border-white rounded-t-full z-10 pointer-events-none"></div>
+          </div>
+          <h3 class="text-3xl md:text-4xl font-serif mb-2 md:mb-4 text-gray-800 val-groom px-4"></h3>
+          <p class="text-gray-500 mb-4 text-sm md:text-base leading-relaxed">Putra dari Keluarga Pria</p>
+        </div>
+
+        <div class="hidden md:flex flex-col items-center justify-center w-32">
+          <div class="w-px h-24 md:h-32 bg-yellow-200"></div>
+          <span class="text-5xl md:text-6xl font-serif text-yellow-300 my-6 md:my-8">&</span>
+          <div class="w-px h-24 md:h-32 bg-yellow-200"></div>
+        </div>
+
+        <div class="flex md:hidden items-center justify-center w-full py-4">
+          <span class="text-5xl font-serif text-yellow-300">&</span>
+        </div>
+
+        <div class="flex flex-col items-center flex-1 text-center md:text-left md:items-start w-full">
+          <div class="w-56 h-80 md:w-64 md:h-96 rounded-t-full overflow-hidden mb-6 md:mb-8 shadow-2xl relative group">
+            <img id="img-bride" src="" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+            <div class="absolute inset-0 border-8 border-white rounded-t-full z-10 pointer-events-none"></div>
+          </div>
+          <h3 class="text-3xl md:text-4xl font-serif mb-2 md:mb-4 text-gray-800 val-bride px-4"></h3>
+          <p class="text-gray-500 mb-4 text-sm md:text-base leading-relaxed">Putri dari Keluarga Wanita</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 px-4 dark-bg text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <img id="img-countdown" src="" class="w-full h-full object-cover filter blur-sm">
+    </div>
+    <div class="max-w-4xl mx-auto relative z-10 text-center">
+      <h2 class="text-xs md:text-sm spacing-extra uppercase text-yellow-400 mb-4">Menuju Hari Bahagia</h2>
+      <h3 class="text-3xl md:text-5xl font-serif mb-10 md:mb-16">Waktu Tersisa</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-10">
+        <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white border-opacity-20"><span id="days" class="block text-4xl md:text-7xl font-serif mb-1 md:mb-2">0</span><span class="text-[10px] md:text-xs tracking-widest uppercase text-yellow-200">Hari</span></div>
+        <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white border-opacity-20"><span id="hours" class="block text-4xl md:text-7xl font-serif mb-1 md:mb-2">0</span><span class="text-[10px] md:text-xs tracking-widest uppercase text-yellow-200">Jam</span></div>
+        <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white border-opacity-20"><span id="minutes" class="block text-4xl md:text-7xl font-serif mb-1 md:mb-2">0</span><span class="text-[10px] md:text-xs tracking-widest uppercase text-yellow-200">Menit</span></div>
+        <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white border-opacity-20"><span id="seconds" class="block text-4xl md:text-7xl font-serif mb-1 md:mb-2">0</span><span class="text-[10px] md:text-xs tracking-widest uppercase text-yellow-200">Detik</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 px-4 light-bg">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-10 md:mb-16">
+        <h2 class="text-xs md:text-sm spacing-extra uppercase gold-text mb-4">Informasi</h2>
+        <h3 class="text-3xl md:text-5xl font-serif text-gray-800">Detail Acara</h3>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+        <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl relative overflow-hidden group transform hover:-translate-y-2 transition-transform duration-500">
+          <div class="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-yellow-50 rounded-bl-full -z-10 transform group-hover:scale-150 transition-transform duration-500"></div>
+          <h4 class="text-3xl md:text-4xl font-serif mb-2 text-gray-800">Akad Nikah</h4>
+          <p class="gold-text tracking-widest uppercase text-xs md:text-sm mb-8 md:mb-10">Prosesi Suci</p>
+          <div class="space-y-4 md:space-y-6 text-gray-600 mb-8 md:mb-12">
+            <div class="flex items-center gap-4 text-left">
+              <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-50 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="calendar" class="w-4 h-4 md:w-5 md:h-5 text-gray-800"></i>
+              </div>
+              <div><p class="font-medium text-sm md:text-base text-gray-800 val-date-full"></p></div>
+            </div>
+          </div>
+          <a id="link-map-akad" href="#" target="_blank" class="w-full dark-bg hover:bg-black text-white py-3 md:py-4 rounded-xl text-xs md:text-sm tracking-widest uppercase transition-colors block text-center mt-6">Buka Google Maps</a>
+        </div>
+
+        <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl relative overflow-hidden group transform hover:-translate-y-2 transition-transform duration-500">
+          <div class="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 light-bg rounded-bl-full -z-10 transform group-hover:scale-150 transition-transform duration-500"></div>
+          <h4 class="text-3xl md:text-4xl font-serif mb-2 text-gray-800">Resepsi</h4>
+          <p class="gold-text tracking-widest uppercase text-xs md:text-sm mb-8 md:mb-10">Perayaan Cinta</p>
+          <div class="space-y-4 md:space-y-6 text-gray-600 mb-8 md:mb-12">
+            <div class="flex items-center gap-4 text-left">
+              <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-50 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="calendar" class="w-4 h-4 md:w-5 md:h-5 text-gray-800"></i>
+              </div>
+              <div><p class="font-medium text-sm md:text-base text-gray-800 val-date-full"></p></div>
+            </div>
+          </div>
+          <a id="link-map-resepsi" href="#" target="_blank" class="w-full dark-bg hover:bg-black text-white py-3 md:py-4 rounded-xl text-xs md:text-sm tracking-widest uppercase transition-colors block text-center mt-6">Buka Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 px-4 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-10 md:mb-16">
+        <h2 class="text-xs md:text-sm spacing-extra uppercase gold-text mb-4">Kisah Kami</h2>
+        <h3 class="text-3xl md:text-5xl font-serif text-gray-800">Love Story</h3>
+      </div>
+
+      <div class="space-y-12 md:space-y-16 relative">
+        <div class="absolute inset-0 ml-[1.15rem] md:mx-auto md:translate-x-0 w-0.5 bg-gradient-to-b from-transparent via-yellow-200 to-transparent"></div>
+        
+        <div class="relative flex items-center justify-between md:justify-normal md:flex-row-reverse group">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-yellow-400 flex-shrink-0 md:order-1 shadow-md z-10 md:transform md:-translate-x-1/2"></div>
+          <div class="w-[calc(100%-4rem)] md:w-5/12 bg-gray-50 p-5 md:p-6 rounded-2xl shadow-sm border border-gray-100 text-left">
+            <span class="gold-text font-serif text-lg md:text-xl mb-1 md:mb-2 block">Awal Bertemu</span>
+            <span class="text-[10px] md:text-xs tracking-widest text-gray-400 uppercase mb-3 block">Januari 2022</span>
+            <p class="text-gray-600 text-xs md:text-sm leading-relaxed">Berawal dari pertemuan tidak sengaja di sebuah kafe di sudut kota, sebuah sapaan sederhana menjadi awal dari cerita panjang kami.</p>
+          </div>
+        </div>
+
+        <div class="relative flex items-center justify-between md:justify-normal group">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-yellow-400 flex-shrink-0 md:order-1 shadow-md z-10 md:transform md:translate-x-1/2"></div>
+          <div class="w-[calc(100%-4rem)] md:w-5/12 bg-gray-50 p-5 md:p-6 rounded-2xl shadow-sm border border-gray-100 text-left">
+            <span class="gold-text font-serif text-lg md:text-xl mb-1 md:mb-2 block">Menjalin Kasih</span>
+            <span class="text-[10px] md:text-xs tracking-widest text-gray-400 uppercase mb-3 block">Agustus 2023</span>
+            <p class="text-gray-600 text-xs md:text-sm leading-relaxed">Setelah saling mengenal cukup lama, kami memutuskan untuk memulai lembaran baru dan berkomitmen satu sama lain.</p>
+          </div>
+        </div>
+
+        <div class="relative flex items-center justify-between md:justify-normal md:flex-row-reverse group">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-yellow-400 flex-shrink-0 md:order-1 shadow-md z-10 md:transform md:-translate-x-1/2"></div>
+          <div class="w-[calc(100%-4rem)] md:w-5/12 bg-gray-50 p-5 md:p-6 rounded-2xl shadow-sm border border-gray-100 text-left">
+            <span class="gold-text font-serif text-lg md:text-xl mb-1 md:mb-2 block">Lamaran</span>
+            <span class="text-[10px] md:text-xs tracking-widest text-gray-400 uppercase mb-3 block">Maret 2026</span>
+            <p class="text-gray-600 text-xs md:text-sm leading-relaxed">Dengan restu dari kedua keluarga besar, kami mengikat janji suci untuk melangkah ke jenjang pernikahan.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 px-4 light-bg">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-10 md:mb-16">
+        <h2 class="text-xs md:text-sm spacing-extra uppercase gold-text mb-4">Kenangan</h2>
+        <h3 class="text-3xl md:text-5xl font-serif text-gray-800">Galeri Pre-Wedding</h3>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="gallery-container">
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 px-4 bg-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="text-center mb-10 md:mb-16">
+        <h2 class="text-xs md:text-sm spacing-extra uppercase gold-text mb-4">Tanda Kasih</h2>
+        <h3 class="text-3xl md:text-5xl font-serif text-gray-800">Wedding Gift</h3>
+      </div>
+      <p class="text-gray-600 text-sm md:text-base mb-10 md:mb-12 leading-relaxed px-2">
+        Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika Anda bermaksud memberikan tanda kasih, Anda dapat melalui fitur di bawah ini:
+      </p>
+      
+      <div class="bg-gray-50 p-6 md:p-10 rounded-3xl shadow-lg border border-gray-200 relative overflow-hidden mx-2">
+        <div class="absolute top-0 left-0 w-full h-2 bg-yellow-400"></div>
+        <h4 class="text-2xl md:text-3xl font-bold text-orange-500 mb-3 md:mb-4 italic tracking-wide">SeaBank</h4>
+        <p id="rek-text" class="text-2xl md:text-3xl font-serif text-gray-800 mb-2 tracking-widest break-all"></p>
+        <p class="text-gray-500 mb-6 md:mb-8 uppercase tracking-widest text-xs md:text-sm">a.n Elza Dian Mey Wulandari</p>
+        
+        <button id="copy-btn" class="mx-auto dark-bg hover:bg-black text-white py-3 px-6 md:px-8 rounded-full text-xs md:text-sm font-medium transition-all flex items-center justify-center gap-2 md:gap-3 shadow-md w-full sm:w-auto">
+          <i data-lucide="copy" class="w-4 h-4 md:w-5 md:h-5"></i>
+          <span>Salin Rekening</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 px-4 light-bg">
+    <div class="max-w-2xl mx-auto">
+      <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-200">
+        <h2 class="text-3xl md:text-4xl font-serif mb-3 md:mb-4 text-center text-gray-800">RSVP & Ucapan</h2>
+        <p class="text-center text-gray-500 mb-8 md:mb-12 text-xs md:text-sm uppercase tracking-widest">Mohon konfirmasi kehadiran</p>
+        
+        <form class="space-y-6 md:space-y-8" onsubmit="event.preventDefault()">
+          <div>
+            <input type="text" class="w-full px-0 py-2 md:py-3 bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-yellow-400 outline-none transition-colors text-sm md:text-base text-gray-800" placeholder="Nama Lengkap">
+          </div>
+          <div>
+            <select class="w-full px-0 py-2 md:py-3 bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-yellow-400 outline-none transition-colors text-sm md:text-base text-gray-800">
+              <option value="" disabled selected hidden>Konfirmasi Kehadiran</option>
+              <option>Hadir (1 Orang)</option>
+              <option>Hadir (2 Orang)</option>
+              <option>Maaf, Tidak Bisa Hadir</option>
+            </select>
+          </div>
+          <div>
+            <textarea rows="4" class="w-full px-0 py-2 md:py-3 bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-yellow-400 outline-none transition-colors text-sm md:text-base text-gray-800 resize-none" placeholder="Tuliskan ucapan & doa untuk mempelai..."></textarea>
+          </div>
+          <button class="w-full gold-bg gold-hover text-white py-3 md:py-4 rounded-xl text-sm md:text-base font-medium tracking-widest uppercase transition-colors shadow-lg mt-2 md:mt-4">
+            Kirim Konfirmasi
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="dark-bg text-gray-400 py-20 md:py-24 text-center px-6 relative">
+    <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-6 md:mb-8 leading-tight"><span class="val-groom"></span> <br class="sm:hidden"><span class="text-yellow-500 text-2xl sm:text-4xl mx-2">&</span><br class="sm:hidden"> <span class="val-bride"></span></h2>
+    <p class="text-xs md:text-sm lg:text-base max-w-2xl mx-auto leading-relaxed mb-10 md:mb-12 opacity-80">
+      Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.
+    </p>
+    <p class="text-xs md:text-sm spacing-extra uppercase text-yellow-500 mb-8">Terima Kasih</p>
+    <div class="mt-12 text-[10px] md:text-xs tracking-widest uppercase border-t border-gray-800 pt-8">
+      <a href="https://instagram.com/kasanvx" target="_blank" class="text-yellow-500 hover:text-yellow-400 transition-colors">Made By @kasanvx</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const FOTO = {
+    cover: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop",
+    hero: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop",
+    pria: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop",
+    wanita: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
+    countdown: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=2070&auto=format&fit=crop",
+    galeri: [
+      "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop"
+    ]
+  };
+
+  document.getElementById('cover-page').style.backgroundImage = 'url(' + FOTO.cover + ')';
+  document.getElementById('img-hero').src = FOTO.hero;
+  document.getElementById('img-groom').src = FOTO.pria;
+  document.getElementById('img-bride').src = FOTO.wanita;
+  document.getElementById('img-countdown').src = FOTO.countdown;
+  
+  const galleryContainer = document.getElementById('gallery-container');
+  FOTO.galeri.forEach(url => {
+    const img = document.createElement('img');
+    img.src = url;
+    img.className = 'w-full h-48 md:h-64 object-cover rounded-2xl shadow-md transform hover:scale-105 transition-transform duration-300';
+    galleryContainer.appendChild(img);
+  });
+
+  const params = new URLSearchParams(window.location.search);
+  const groomName = params.get('groom') || 'Imron Fakhrozi';
+  const brideName = params.get('bride') || 'Elza Dian Mey Wulandari';
+  const guestName = params.get('to') || 'Bapak/Ibu/Saudara/i';
+  const targetDateStr = params.get('date') || '2026-12-31T08:00:00';
+  const customMusic = params.get('music') || 'file-musik-kamu.mp3';
+  const mapAkad = params.get('map1') || '#';
+  const mapResepsi = params.get('map2') || '#';
+  const noRekening = params.get('rek') || '1234567890';
+
+  document.querySelectorAll('.val-groom').forEach(el => el.textContent = groomName);
+  document.querySelectorAll('.val-bride').forEach(el => el.textContent = brideName);
+  document.querySelectorAll('.val-guest').forEach(el => el.textContent = guestName);
+  
+  document.getElementById('music-source').src = customMusic;
+  document.getElementById('bg-music').load();
+  document.getElementById('link-map-akad').href = mapAkad;
+  document.getElementById('link-map-resepsi').href = mapResepsi;
+  document.getElementById('rek-text').textContent = noRekening;
+
+  const targetDateObj = new Date(targetDateStr);
+  const formattedDate = targetDateObj.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  const shortDate = targetDateObj.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, ' . ');
+  
+  document.querySelectorAll('.val-date-full').forEach(el => el.textContent = formattedDate);
+  document.querySelectorAll('.val-date-text').forEach(el => el.textContent = shortDate);
+
+  const coverPage = document.getElementById('cover-page');
+  const mainContent = document.getElementById('main-content');
+  const openBtn = document.getElementById('open-btn');
+  const bgMusic = document.getElementById('bg-music');
+  const audioBtn = document.getElementById('audio-btn');
+  const audioIcon = document.getElementById('audio-icon');
+  let isPlaying = false;
+
+  openBtn.addEventListener('click', () => {
+    coverPage.classList.add('opacity-0');
+    setTimeout(() => {
+      coverPage.style.display = 'none';
+      document.body.classList.remove('overflow-hidden');
+      document.body.classList.remove('overflow-x-hidden');
+      mainContent.classList.remove('hidden');
+      audioBtn.classList.remove('hidden');
+      setTimeout(() => mainContent.classList.remove('opacity-0'), 50);
+      bgMusic.play();
+      isPlaying = true;
+      audioIcon.setAttribute('data-lucide', 'pause');
+      audioIcon.classList.add('animate-pulse');
+      lucide.createIcons();
+    }, 500);
+  });
+
+  audioBtn.addEventListener('click', () => {
+    if (isPlaying) {
+      bgMusic.pause();
+      audioIcon.setAttribute('data-lucide', 'music');
+      audioIcon.classList.remove('animate-pulse');
+    } else {
+      bgMusic.play();
+      audioIcon.setAttribute('data-lucide', 'pause');
+      audioIcon.classList.add('animate-pulse');
+    }
+    isPlaying = !isPlaying;
+    lucide.createIcons();
+  });
+
+  const targetTime = targetDateObj.getTime();
+  setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetTime - now;
+    if (distance > 0) {
+      document.getElementById('days').textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
+      document.getElementById('hours').textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById('minutes').textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById('seconds').textContent = Math.floor((distance % (1000 * 60)) / 1000);
+    }
+  }, 1000);
+
+  const copyBtn = document.getElementById('copy-btn');
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(noRekening);
+    copyBtn.innerHTML = '<i data-lucide="check-circle-2" class="w-4 h-4 md:w-5 md:h-5 text-green-400"></i><span>Berhasil Disalin</span>';
+    lucide.createIcons();
+    setTimeout(() => {
+      copyBtn.innerHTML = '<i data-lucide="copy" class="w-4 h-4 md:w-5 md:h-5"></i><span>Salin Rekening</span>';
+      lucide.createIcons();
+    }, 2000);
+  });
+
+  lucide.createIcons();
+</script>
+</body>
+</html>
