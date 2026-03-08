@@ -11,25 +11,20 @@
 body { font-family: 'Montserrat', sans-serif; background-color: #0f172a; color: #f8fafc; overflow-x: hidden; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
 h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
 .font-script { font-family: 'Alex Brush', cursive; }
-
 .text-silver { color: #e2e8f0; }
 .text-silver-dark { color: #94a3b8; }
 .bg-silver { background-color: #e2e8f0; }
 .border-silver { border-color: #e2e8f0; }
-
 .main-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('https://cdn.snx.biz.id/0rkZqny.jpeg'); background-size: cover; background-position: center; z-index: -2; }
 .bg-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.8) 100%); z-index: -1; }
-
 .glass { background: rgba(30, 41, 59, 0.45); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5); }
 .glass-light { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.15); }
-
 @keyframes fadeUp { 0% { transform: translateY(40px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 .animate-fade-up { animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
 @keyframes hideCover { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-100%); opacity: 0; visibility: hidden; } }
 .cover-close { animation: hideCover 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards; }
 @keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 rgba(226, 232, 240, 0.3); } 70% { box-shadow: 0 0 0 15px rgba(226, 232, 240, 0); } 100% { box-shadow: 0 0 0 0 rgba(226, 232, 240, 0); } }
 .btn-pulse { animation: pulseGlow 2s infinite; }
-
 .map-container { overflow: hidden; padding-bottom: 70%; position: relative; height: 0; border-radius: 1.2rem; }
 @media (min-width: 768px) { .map-container { padding-bottom: 56.25%; } }
 .map-container iframe { left: 0; top: 0; height: 100%; width: 100%; position: absolute; border: 0; }
@@ -45,9 +40,10 @@ h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
 <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-silver to-transparent"></div>
 <p class="text-[10px] md:text-xs tracking-[0.4em] uppercase mb-4 text-silver-dark font-semibold">The Wedding Of</p>
 <h1 class="font-script text-5xl md:text-7xl mb-4 text-white drop-shadow-lg">Imron & Elza</h1>
-<p class="text-gray-400 mb-8 text-xs md:text-sm font-light italic border-b border-white/10 pb-6 px-2">
-Kepada Yth. Bapak/Ibu/Saudara/i
-</p>
+<div class="text-gray-400 mb-8 text-xs md:text-sm font-light italic border-b border-white/10 pb-6 px-2">
+Kepada Yth.<br>
+<span id="guest-name" class="font-bold text-white text-lg md:text-xl block mt-2">Bapak/Ibu/Saudara/i</span>
+</div>
 <button onclick="openInvitation()" class="bg-silver hover:bg-white text-[#0f172a] px-8 py-3 md:py-4 rounded-full tracking-[0.15em] text-[10px] md:text-xs transition-all duration-500 transform hover:-translate-y-1 btn-pulse flex items-center justify-center mx-auto gap-2 uppercase font-bold w-full md:w-auto">
 <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"></path></svg>
 Buka Undangan
@@ -164,7 +160,7 @@ Minggu, 20 Desember 2026
 <div class="glass p-6 md:p-10 rounded-3xl md:rounded-[3rem] flex flex-col border border-white/10">
 <h4 class="font-serif text-2xl md:text-3xl text-center text-white mb-6 md:mb-8">Peta Lokasi</h4>
 <div class="map-container mb-6 md:mb-8 shadow-xl border border-white/20">
-<iframe src="https://maps.google.com/maps?q=-6.8705811,108.9780259&hl=id&z=15&output=embed" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe src="https://maps.google.com/maps?q=-6.8705811,108.9780259&hl=id&z=16&output=embed" style="border:0;" allowfullscreen loading="lazy"></iframe>
 </div>
 <a href="https://goo.gl/maps/CtRZYzbfnt2R7Fkm6" target="_blank" class="mt-auto bg-silver hover:bg-white text-[#0f172a] py-4 md:py-5 px-6 rounded-xl md:rounded-2xl text-center font-bold tracking-widest uppercase text-[10px] md:text-xs transition-all flex justify-center items-center gap-2 md:gap-3 shadow-lg">
 <svg class="w-4 h-4 md:w-5 md:h-5 text-[#0f172a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -204,7 +200,7 @@ Buka via Google Maps
 
 <section class="py-20 md:py-24 px-4 text-center relative">
 <div class="max-w-xl mx-auto reveal glass p-6 md:p-14 rounded-3xl md:rounded-[3rem] border border-white/20 shadow-2xl">
-<svg class="w-10 h-10 md:w-14 md:h-14 mx-auto text-silver mb-6 md:mb-8 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+<svg class="w-10 h-10 md:w-14 md:h-14 mx-auto text-silver mb-6 md:mb-8 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"></path></svg>
 <h2 class="font-serif text-3xl md:text-5xl text-white mb-4 md:mb-6 font-bold">Tanda Kasih</h2>
 <p class="text-gray-300 mb-8 md:mb-12 text-xs md:text-base font-light leading-relaxed px-2 md:px-4">
 Doa restu Anda adalah karunia terindah bagi kami. Apabila Anda ingin memberikan tanda kasih, dapat disalurkan melalui rekening berikut:
@@ -232,13 +228,21 @@ Doa restu Anda adalah karunia terindah bagi kami. Apabila Anda ingin memberikan 
 <div class="w-12 md:w-20 h-px bg-white/30 mb-6 md:mb-8"></div>
 <p class="text-gray-300 font-light mb-8 md:mb-10 italic font-serif text-sm md:text-xl leading-relaxed px-4">"Terima kasih atas segala doa dan restu yang telah diberikan kepada kami."</p>
 <h2 class="font-script text-5xl md:text-7xl text-silver mb-8 md:mb-12 drop-shadow-xl">Imron & Elza</h2>
-<p class="text-gray-500 text-[9px] md:text-[10px] tracking-[0.2em] md:tracking-[0.4em] uppercase font-bold">
-made by <a href="https://instagram.com/kasanvx" target="_blank" class="text-silver hover:text-white transition-colors border-b border-transparent hover:border-silver pb-1">kasanvx</a>
-</p>
+<div class="flex items-center gap-2 text-gray-500 text-[9px] md:text-[10px] tracking-[0.2em] md:tracking-[0.4em] uppercase font-bold">
+<span>made by</span>
+<a href="https://instagram.com/kasanvx" target="_blank" class="text-silver hover:text-white transition-transform hover:scale-110">
+<svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</a>
+</div>
 </div>
 </footer>
 
 <script>
+const params = new URLSearchParams(window.location.search);
+const to = params.get('to');
+if (to) {
+document.getElementById('guest-name').innerText = decodeURIComponent(to).replace(/\+/g, ' ');
+}
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
 entries.forEach(entry => {
@@ -248,28 +252,22 @@ observer.unobserve(entry.target);
 }
 });
 }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
 reveals.forEach(reveal => {
 observer.observe(reveal);
 });
-
 function openInvitation() {
 const cover = document.getElementById('welcome-screen');
 const audioBtn = document.getElementById('audio-btn');
 const audio = document.getElementById('audio-bg');
-
 cover.classList.add('cover-close');
 audioBtn.classList.remove('hidden');
-
 audio.play().catch(() => {});
 document.body.style.overflowY = 'auto';
 window.scrollTo(0, 0);
 }
-
 function toggleAudio() {
 const audio = document.getElementById('audio-bg');
 const icon = document.getElementById('audio-icon');
-
 if (audio.paused) {
 audio.play();
 icon.classList.add('animate-[spin_4s_linear_infinite]');
@@ -278,7 +276,6 @@ audio.pause();
 icon.classList.remove('animate-[spin_4s_linear_infinite]');
 }
 }
-
 function copyRekening() {
 const num = '901708469805';
 const input = document.createElement('input');
@@ -287,20 +284,17 @@ document.body.appendChild(input);
 input.select();
 document.execCommand('copy');
 document.body.removeChild(input);
-
 const btn = document.getElementById('copy-btn');
 const initial = '<span>Salin Nomer Rekening</span>';
 btn.innerHTML = 'BERHASIL DISALIN';
 btn.classList.add('bg-silver', 'text-[#0f172a]');
 btn.classList.remove('bg-transparent', 'text-silver');
-
 setTimeout(() => {
 btn.innerHTML = initial;
 btn.classList.remove('bg-silver', 'text-[#0f172a]');
 btn.classList.add('bg-transparent', 'text-silver');
 }, 2500);
 }
-
 document.body.style.overflowY = 'hidden';
 </script>
 
